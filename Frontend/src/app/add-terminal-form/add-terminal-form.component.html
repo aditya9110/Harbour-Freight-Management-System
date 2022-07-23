@@ -1,0 +1,103 @@
+<div class="container-fluid">
+    <div class="card card-primary" style="width: 45rem;">
+        <div class="card-header bg-info text-white"></div>
+        <div class="card-body border border-primary">
+            <mat-card>
+                <mat-card-content>
+                    <section class="admin-table mat-elevation-z8" tabindex="0">
+                        <form [formGroup]="addTerminalForm" class="example-form">
+                            <mat-form-field class="example-half-width" appearance="fill">
+                                <mat-label style="color: black;">Terminal Name</mat-label>
+                                <input type="text" matInput formControlName="terminalName">
+                                <mat-error *ngIf="terminalName.errors?.['required']">
+                                  Terminal Name is required
+                                </mat-error>
+                                <mat-error *ngIf="terminalName.errors?.['minlength']">
+                                    Minimum 3 characters
+                                </mat-error>
+                                <mat-error *ngIf="terminalName.errors?.['maxlength']">
+                                    Maximum 20 characters
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="example-half-width" appearance="fill">
+                                <mat-label style="color: black;">Country</mat-label>
+                                <input type="text" matInput formControlName="country">
+                                <mat-error *ngIf="country.errors?.['required']">
+                                    Country is required
+                                </mat-error>
+                                <mat-error *ngIf="country.errors?.['minlength']">
+                                    Minimum 3 characters
+                                </mat-error>
+                                <mat-error *ngIf="country.errors?.['maxlength']">
+                                    Maximum 20 characters
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="example-half-width" appearance="fill">
+                                <mat-label style="color: black;">Item Type</mat-label>
+                                <input type="text" matInput formControlName="itemType">
+                                <mat-error *ngIf="itemType.errors?.['required']">
+                                  Item Type is required
+                                </mat-error>
+                                <mat-error *ngIf="itemType.errors?.['minlength']">
+                                    Minimum 4 characters
+                                </mat-error>
+                                <mat-error *ngIf="itemType.errors?.['maxlength']">
+                                    Maximum 30 characters
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="example-half-width" appearance="fill">
+                                <mat-label style="color: black;">Harbor Location</mat-label>
+                                <input type="text" matInput formControlName="harborLocation">
+                                <mat-error *ngIf="harborLocation.errors?.['required']">
+                                    Harbor Location is required
+                                </mat-error>
+                                <mat-error *ngIf="harborLocation.errors?.['minlength']">
+                                    Minimum 5 characters
+                                </mat-error>
+                                <mat-error *ngIf="harborLocation.errors?.['maxlength']">
+                                    Maximum 25 characters
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label style="color: black;">Terminal Description</mat-label>
+                                <input type="text" matInput formControlName="terminalDescription">
+                                <mat-error *ngIf="terminalDescription.errors?.['required']">
+                                    Terminal Description is required
+                                </mat-error>
+                                <mat-error *ngIf="terminalDescription.errors?.['descInvalid']">
+                                    {{terminalDescription.errors?.['descInvalid'].message}}
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="example-half-width" appearance="fill">
+                                <mat-label style="color: black;">Capacity</mat-label>
+                                <input type="number" matInput formControlName="capacity">
+                                <mat-error *ngIf="capacity.errors?.['required']">
+                                    Capacity is required
+                                </mat-error>
+                                <mat-error *ngIf="capacity.errors?.['max']">
+                                    Capacity should less than 100000
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="example-half-width" appearance="fill">
+                                <mat-label style="color: black;">Available Capacity</mat-label>
+                                <input type="number" matInput formControlName="availableCapacity">
+                                <mat-error *ngIf="availableCapacity.errors?.['required']">
+                                    Available Capacity is required
+                                </mat-error>
+                                <mat-error *ngIf="availableCapacity.errors?.['max']">
+                                    Available Capacity should less than 100000
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-radio-group aria-label="Status" formControlName="status">
+                                <mat-radio-button value="AVAILABLE">Available</mat-radio-button>
+                                <mat-radio-button value="NOTAVAILABLE">Not Available</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <button [disabled]="addTerminalForm.valid" (click)="addTerminal()" mat-raised-button color="primary">Add</button>
+                        </form>
+                    </section>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
