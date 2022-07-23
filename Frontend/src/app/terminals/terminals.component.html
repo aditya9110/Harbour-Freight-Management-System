@@ -1,0 +1,44 @@
+<div class="container-fluid center">
+    <div class="card card-primary" style="width: 60rem;">
+        <div class="card-header text-white" style="background-color: #00AA9E;">
+            Terminals
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <button class="my-2" mat-raised-button color="primary">
+                    <span class="material-icons">add</span> Add Terminal
+                </button>
+            </div>
+            <div class="row">
+                <div *ngFor="let terminal of terminals" [ngSwitch]="terminal.status" class="col-md-4">
+
+                    <div *ngSwitchCase="'AVAILABLE'" class="card my-3" style="width: 18rem;">
+                        <div class="card-body" style="background-color: rgba(223, 26, 26, 0.91); border-radius: 7%;">
+                            <h5 class="card-title" style="color: rgb(255, 255, 255);">{{terminal.terminalName}}</h5>
+                            <p class="card-text">Card Body</p>
+                            <div class="row justify-content-around">
+                                <button type="button" class="btn btn-info">View</button>
+                                <button type="button" mat-mini-fab matTooltip="Delete" color="black">
+                                    <span class="material-icons">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'NOTAVAILABLE'" class="card my-3" style="width: 18rem;">
+                        <div class="card-body" style="background-color: rgba(26, 223, 49, 0.91); border-radius: 7%;">
+                            <h5 class="card-title">{{terminal.terminalName}}</h5>
+                            <p class="card-text">Card Body</p>
+                            <div class="row justify-content-around">
+                                <button type="button" class="btn btn-info">View</button>
+                                <button type="button" mat-mini-fab matTooltip="Delete" color="black">
+                                    <span class="material-icons">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
