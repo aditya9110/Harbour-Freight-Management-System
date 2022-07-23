@@ -1,0 +1,41 @@
+<div class="container-fluid center">
+    <div class="card card-primary" style="width: 30rem;">
+        <div class="card-header text-black font-weight-bold">
+            {{terminal.terminalName}}
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5"> Country </div>
+                <div class="col-md-7"> {{terminal.country}} </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5"> Item Type </div>
+                <div class="col-md-7"> {{terminal.itemType}} </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5"> Terminal Description </div>
+                <div class="col-md-7"> {{terminal.terminalDescription}} </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5"> Capacity </div>
+                <div class="col-md-7"> {{terminal.capacity}} </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5"> Available Capacity </div>
+                <!-- <div class="col-md-4"> {{terminal.availableCapacity}} </div> -->
+                <div class="col-md-4"> 
+                    <input type="number" matInput [(ngModel)]='newCapValue' placeholder={{terminal.availableCapacity}}>
+                 </div>
+                <div class="col-md-3"> 
+                    <button (click)="updateCapacity(newCapValue)" mat-mini-fab matTooltip="Update Capacity">
+                        <span class="material-icons">update</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5"> Status </div>
+                <div class="col-md-7"> {{terminal.status}} </div>
+            </div>
+        </div>
+    </div>
+</div>
