@@ -8,6 +8,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class AddVehicleFormComponent implements OnInit {
 
+  minDate = new Date();
   constructor(private formBuilder:FormBuilder) { }
 
   get vehicleNumber() {
