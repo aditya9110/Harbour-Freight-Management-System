@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+.space{
+    flex: 1 1 auto;
+}
+
+.mat-raised-button{
+  color: aqua;
+  background-color: #272727;
+}
+.containerr {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+.centered {
+    position: absolute;
+    top: 70%;
+    left: 28%;
+    margin-bottom : 100px;
+    font-family: "Lucida Console", "Courier New", monospace;
+  }
+  .centered h2{
+    text-align: center;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 40px;
+
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* background-color: white; */
+    background-color: #f1f1f1;
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: white;
+    border: 0px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    color: #434343;
+    font: 400 14px/20px Roboto,"Helvetica Neue", sans-serif;
+
+  }
+  .grid-item h1{
+    transition: all ease .5s;
+  }
+  .grid-item:hover h1{
+    transform: scale(1.5);
+    -webkit-filter-:invert(0.8) ;
+  }
+  .grid-item h2{
+    transition: all ease .5s;
+  }
+  .grid-item:hover h2{
+    transform: scale(1.5);
+    -webkit-filter-:invert(0.8) ;
+  }
+  .text{
+    text-align:center ;
+       
+  }
+  .text h2{
+    font-size: 30px;
+    font: Roboto,"Helvetica Neue", sans-serif;
+  }
+  
+  .testimonials{
+    padding: 40px 0;
+    background: #f1f1f1;
+    color: #434343;
+    text-align: center;
+  }
+  .inner{
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+  }
+  
+  .border{
+    width: 160px;
+    height: 5px;
+    background: #6ab04c;
+    margin: 26px auto;
+  }
+  
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .col{
+    flex: 33.33%;
+    max-width: 33.33%;
+    box-sizing: border-box;
+    padding: 15px;
+  }
+  .abc,.testimonial{
+    background: #fff;
+    padding: 30px;
+    overflow: hidden;
+  }
+  .testimonial{
+    transition: all ease .5s;
+  }
+  .testimonial:hover{
+    transform: scale(1.2);
+    -webkit-filter-:invert(0.8) ;
+  }
+  .testimonial img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  .name{
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 20px 0;
+  }
+  .stars{
+    color: #6ab04c;
+    margin-bottom: 20px;
+  }
+  
+  
+  @media screen and (max-width:960px) {
+  .col{
+    flex: 100%;
+    max-width: 80%;
+  }
+  }
+  
+  @media screen and (max-width:600px) {
+  .col{
+    flex: 100%;
+    max-width: 100%;
+  }
+  }
+
+  .abc{
+    line-height: 1.5;
+    font: Roboto,"Helvetica Neue", sans-serif;
+    min-height: 60vh;
+    background-color: #f1f1f1;
+  }
+
+  .about-us{
+    background: #f1f1f1;
+  }
+  .about-us h1{
+    text-align: center;
+    font-size: 35px;
+    color: #434343;
+    letter-spacing: 1.5px;
+    margin-top: 40px;
+  }
+  .wrapper{
+    padding: 0px 60px;
+    margin: 40px auto;
+  }
+  .content{
+    width: 53%;
+    float: left;
+    text-align: left;
+    
+  }
+  .content h3{
+    color: #434343;
+    letter-spacing: 1px;
+  }
+  .content p{
+    font-family: sans-serif;
+    font-size: 17px;
+    color: #434343;
+    margin-top: 20px;
+  }
+  .image-section{
+    width: 40%;
+    float: right;
+    padding: 0px 30px;
+  }
+  .image-section img{
+    max-width: 100%;
+    height: auto;
+    
+  }
+
+.inner-footer{
+    margin: 0;
+    padding: 0;
+    background-color: #272727;
+    }
+    
+.social-links{
+      display: flex;    
+    }
+.social-links ul{   
+    padding-top: 20px;
+    display: flex;  
+    width: 250px;
+    height: 30px;
+    margin: auto;
+    justify-content: space-between;
+}
+.social-items{
+  list-style: none;   
+    }
+.social-items  a{
+      padding: 10px 20;
+      font-size: 35px;
+      color: aqua;
+     
+}
+.quick-links{
+  display: flex;
+  width:35%;
+  margin:auto;
+  margin-top: 10px;
+  justify-content: space-between;
+  }
+  
+  .quick-links ul{
+  display: flex;
+  }
+  
+  .quick-items{
+  list-style: none;
+  }
+  
+  .quick-items a{
+  text-decoration: none;
+  font-size: 18px; 
+  color: white;
+  padding: 0px 15px;}
+  
+  
+  .outer-footer{  
+  padding: 10px; 
+  text-align: center;
+  color: white;
+  }
