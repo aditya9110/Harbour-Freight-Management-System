@@ -1,0 +1,101 @@
+<div class="container-fluid">
+    <div class="card card-primary" style="width: 45rem;">
+        <div class="card-header bg-info text-white"></div>
+        <div class="card-body border border-primary">
+            <mat-card>
+                <mat-card-content>
+                    <section class="admin-table" style="background-color: white;" tabindex="0">
+                        <form [formGroup]="addVehicleForm" class="example-form">
+                            <div class="row py-1">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Vehicle Number</mat-label>
+                                        <input type="text" matInput formControlName="vehicleNumber">
+                                        <mat-error *ngIf="vehicleNumber.errors?.['required']">
+                                            Vehicle Number is required
+                                        </mat-error>
+                                        <mat-error *ngIf="!vehicleNumber.errors?.['required'] && vehicleNumber.errors?.['vehicleNumberInvalid']">
+                                            {{vehicleNumber.errors?.['vehicleNumberInvalid'].message}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Vehicle Name</mat-label>
+                                        <mat-select formControlName="vehicleName" name="food">
+                                            <mat-option *ngFor="let type of vehicleNameList" [value]="type">
+                                              {{type}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="vehicleName.errors?.['required']">
+                                            Vehicle Name is required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row py-1">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Lifting Capacity</mat-label>
+                                        <input type="number" matInput formControlName="maxLiftingCapacity">
+                                        <mat-error *ngIf="maxLiftingCapacity.errors?.['required']">
+                                            Lifting Capacity is required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Retire Date</mat-label>
+                                        <input type="date" matInput formControlName="retireDate">
+                                        <mat-error *ngIf="retireDate.errors?.['required']">
+                                            Retire Date is required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row py-1">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Harbor Location</mat-label>
+                                        <input type="text" matInput formControlName="harborLocation">
+                                        <mat-error *ngIf="harborLocation.errors?.['required']">
+                                            Harbor Location is required
+                                        </mat-error>
+                                        <mat-error *ngIf="harborLocation.errors?.['minlength']">
+                                            Minimum 5 characters
+                                        </mat-error>
+                                        <mat-error *ngIf="harborLocation.errors?.['maxlength']">
+                                            Maximum 25 characters
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Country</mat-label>
+                                        <input type="text" matInput formControlName="country">
+                                        <mat-error *ngIf="country.errors?.['required']">
+                                            Country is required
+                                        </mat-error>
+                                        <mat-error *ngIf="country.errors?.['minlength']">
+                                            Minimum 5 characters
+                                        </mat-error>
+                                        <mat-error *ngIf="country.errors?.['maxlength']">
+                                            Maximum 25 characters
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <mat-radio-group aria-label="vehicleStatus" formControlName="vehicleStatus">
+                                <mat-radio-button value="Active">Active</mat-radio-button>
+                                <mat-radio-button value="Retired">Retired</mat-radio-button>
+                                <mat-radio-button value="InProgress">In Progress</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <button [disabled]="addVehicleForm.valid" (click)="addVehicle()" mat-raised-button color="primary">Add</button>
+                        </form>
+                    </section>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
