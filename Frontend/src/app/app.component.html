@@ -1,5 +1,11 @@
+<mat-toolbar color="primary">
+    <div [routerLink]='["/"]' routerLinkActive="active">Custom Toolbar</div>
+    <span class="example-spacer"></span>
+    <div class="px-4" [routerLink]='["/add-workitem"]' routerLinkActive="active">Add Workitem</div>
+    <div class="" [routerLink]='["/dashboard"]' routerLinkActive="active">Profile</div>
+</mat-toolbar>
+<router-outlet></router-outlet>
 <app-admin-dashboard></app-admin-dashboard>
 <app-terminals></app-terminals>
 <app-add-terminal-form></app-add-terminal-form>
 <app-update-terminal-form></app-update-terminal-form>
-<router-outlet></router-outlet>

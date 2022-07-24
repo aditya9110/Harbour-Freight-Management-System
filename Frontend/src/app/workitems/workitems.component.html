@@ -1,0 +1,252 @@
+
+<div class="wrapper py-5">
+    <div class="head p-4 rounded d-flex justify-content-center">
+      <div>
+        Workitems
+      </div>
+    </div>
+    <div class="workitemsWrapper mt-4 rounded py-2">
+      <mat-form-field appearance="outline" class="mx-5 mb-2">
+        <mat-label>Search By Name</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+      
+      <div class="rounded">
+        <mat-table  [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="itemName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.itemName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="itemType">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.itemType}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="quantity">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.quantity}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="sourceCountry">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Source </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.sourceCountry}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="destinationCountry">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Destination </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.destinationCountry}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="shippingDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Shipping Date </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.shippingDate}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef > Action </mat-header-cell>
+            <mat-cell *matCellDef="let row" class="text-primary "  (click)="openModal(row)"> View Item </mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      
+          <!-- Row shown when there is no matching data. -->
+          <div class="mat-row w-100 py-5" *matNoDataRow>
+            <p class="w-100 text-center fs-4">No data matching the filter "{{input.value}}"</p>
+          </div>
+        </mat-table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+
+    
+      
+    </div>
+    <div *ngIf="isModalOpen" class="Modal">
+        <div class="Modal-content" >
+            <span id="closeModal" class="Close" (click)="closeModal()">&times;</span>
+            <h1 class="text-center">Workitem - {{itemData.id}} </h1>
+            <div class="px-4 h-75" *ngIf="!isUpdateFormOpen">
+                <div class="row ">
+                  <div class="fieldWrapper col">
+                      <div class="nameWrapper">Item Name</div>
+                      <div class="valueWrapper">{{itemData.itemName}}</div>
+                  </div>
+                  <div class="fieldWrapper col">
+                    <div class="nameWrapper">Item Type</div>
+                    <div class="valueWrapper">{{itemData.itemType}}</div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="fieldWrapper col">
+                      <div class="nameWrapper">Country</div>
+                      <div class="valueWrapper">{{itemData.sourceCountry}} to {{itemData.destinationCountry}}</div>
+                  </div>
+                  <div class="fieldWrapper col">
+                    <div class="nameWrapper">Harbor Location</div>
+                    <div class="valueWrapper">{{itemData.originHarborLocation}} to {{itemData.selectedHarborLocations}}</div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="fieldWrapper col">
+                      <div class="nameWrapper">Quantity</div>
+                      <div class="valueWrapper">{{itemData.quantity}}</div>
+                  </div>
+                  <div class="fieldWrapper col">
+                    <div class="nameWrapper">Shipping Date</div>
+                    <div class="valueWrapper">{{itemData.shippingDate}}</div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="fieldWrapper col">
+                      <div class="nameWrapper">Item Description</div>
+                      <div class="valueWrapper">{{itemData.itemDescription}}</div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="fieldWrapper col">
+                    <div class="nameWrapper">Message To Recipient</div>
+                    <div class="valueWrapper">{{itemData.messageToRecipient}}</div>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="fieldWrapper col">
+                    <div class="nameWrapper">Amount</div>
+                    <div class="valueWrapper">{{itemData.amount}}</div>
+                  </div>
+                  <div class="fieldWrapper col">
+                    <div class="nameWrapper">Status</div>
+                    <div class="valueWrapper">In Transit</div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-around my-5 mb-4">
+                  <button mat-raised-button (click)="closeModal()">Close</button>
+                  <button mat-raised-button color="primary" (click)="openUpdateWorkItem()">Update</button>
+                </div>
+            </div>
+            <form [formGroup]="workItemUpdateForm" *ngIf="isUpdateFormOpen">
+              <div class="row mb-2">
+                  <div class="col-6">
+                      <mat-form-field appearance="outline" class="w-100">     
+                          <mat-label>Item Name</mat-label>   
+                          <input matInput placeholder="" formControlName="itemName">
+                          <mat-error *ngIf="f['itemName'].touched">
+                              <mat-error *ngIf="f['itemName'].errors && f['itemName'].errors['required']">This is required</mat-error>
+                              <mat-error *ngIf="f['itemName'].errors && (f['itemName'].errors['minlength'] || f['itemName'].errors['maxlength'])">Item Name should be between 3 to 25 characters</mat-error>  
+                          </mat-error>
+                          
+                          <!-- <mat-hint>Hint</mat-hint>   -->
+                      </mat-form-field>  
+                  </div>
+                  <div class="col-6">
+                      <mat-form-field appearance="outline" class="w-100" > 
+                          <mat-label>Item Type</mat-label>    
+                          <input matInput placeholder="" formControlName="itemType"> 
+                          <mat-error *ngIf="f['itemType'].touched">
+                              <mat-error *ngIf="f['itemType'].errors && f['itemType'].errors['required']">This is required</mat-error>
+                              <mat-error *ngIf="f['itemType'].errors && (f['itemType'].errors['minlength'] || f['itemType'].errors['maxlength'])">Item Name should be between 4 to 25 characters</mat-error>  
+                          </mat-error>
+                     </mat-form-field>  
+                  </div>                  
+              </div>
+              <div class="row mb-2">
+                  <div class="col">
+                      <mat-form-field appearance="outline" class="w-100">  
+                          <mat-label>Item Description</mat-label>   
+                          <input matInput placeholder="" formControlName="itemDescription">  
+                          <mat-error *ngIf="f['itemDescription'].touched">
+                              <mat-error *ngIf="f['itemDescription'].errors && f['itemDescription'].errors['required']">This is required</mat-error>
+                              <mat-error *ngIf="f['itemDescription'].errors && (f['itemDescription'].errors['minlength'] || f['itemDescription'].errors['maxlength'])">Item Name should be between 10 to 45 characters</mat-error>  
+                          </mat-error>    
+                      </mat-form-field>  
+                  </div>                 
+              </div>
+              <div class="row mb-2">
+                  <div class="col">
+                      <mat-form-field appearance="outline" class="w-100">
+                          <mat-label>Message to Recipient</mat-label>     
+                          <input matInput placeholder="" formControlName="messageToRecipient"> 
+                          <mat-error *ngIf="f['messageToRecipient'].touched">
+                              <mat-error *ngIf="f['messageToRecipient'].errors && f['messageToRecipient'].errors['required']">This is required</mat-error>
+                              <mat-error *ngIf="f['messageToRecipient'].errors && (f['messageToRecipient'].errors['minlength'] || f['messageToRecipient'].errors['maxlength'])">Item Name should be between 10 to 50 characters</mat-error>  
+                          </mat-error>       
+                      </mat-form-field>  
+                  </div>   
+                  <div class="col-3">
+                      <mat-form-field appearance="outline" class="w-100"> 
+                          <mat-label>Capacity</mat-label>    
+                          <input matInput placeholder=""  formControlName="capacity">  
+                          <span matSuffix>kg</span>  
+                      </mat-form-field>  
+                  </div>               
+              </div>
+              <div class="row mb-2">
+                  <div class="col-6">
+                      <mat-form-field appearance="outline" class="w-100">  
+                          <mat-label>Source Country</mat-label>   
+                          <input matInput placeholder="" formControlName="sourceCountry"> 
+                          <mat-error *ngIf="f['sourceCountry'].touched">
+                              <mat-error *ngIf="f['sourceCountry'].errors && f['sourceCountry'].errors['required']">This is required</mat-error>
+                              <mat-error *ngIf="f['sourceCountry'].errors && (f['sourceCountry'].errors['minlength'] || f['sourceCountry'].errors['maxlength'])">Item Name should be between 5 to 25 characters</mat-error>  
+                          </mat-error>         
+                      </mat-form-field>  
+                  </div>
+                  <div class="col-6">
+                      <mat-form-field appearance="outline" class="w-100">
+                          <mat-label>Destination Country</mat-label>     
+                          <input matInput placeholder="" formControlName="destinationCountry"> 
+                          <mat-error *ngIf="f['destinationCountry'].touched">
+                              <mat-error *ngIf="f['destinationCountry'].errors && f['destinationCountry'].errors['required']">This is required</mat-error>
+                              <mat-error *ngIf="f['destinationCountry'].errors && (f['destinationCountry'].errors['minlength'] || f['destinationCountry'].errors['maxlength'])">Item Name should be between 5 to 25 characters</mat-error>  
+                          </mat-error>         
+                      </mat-form-field>  
+                  </div>                  
+              </div>
+              <div class="row mb-2">
+                  <div class="col-6">
+                      <mat-form-field appearance="outline" class="w-100"> 
+                          <mat-label>Available Harbor Location</mat-label>    
+                          <input matInput placeholder="" formControlName="availableHarborLocation">  
+                          <mat-error *ngIf="f['availableHarborLocation'].touched">
+                              <mat-error *ngIf="f['availableHarborLocation'].errors && f['availableHarborLocation'].errors['required']">This is required</mat-error>
+                              <mat-error *ngIf="f['availableHarborLocation'].errors && (f['availableHarborLocation'].errors['minlength'] || f['availableHarborLocation'].errors['maxlength'])">Item Name should be between 5 to 25 characters</mat-error>  
+                          </mat-error>          
+                      </mat-form-field>  
+                  </div>
+                  <div class="col-6">
+                      <mat-form-field appearance="outline" class="w-100">
+                          <mat-label>Choose a date</mat-label>
+                          <input matInput [matDatepicker]="picker1" [min]="minDate" formControlName="shippingDate">
+                          <mat-hint>MM/DD/YYYY</mat-hint>
+                          <mat-error *ngIf="f['shippingDate'].touched">
+                            <mat-error *ngIf="f['shippingDate'].errors">Please provide date in this format "MM/DD/YYYY"</mat-error>
+                          </mat-error>
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
+                  </div>              
+              </div>
+              <div class="d-flex justify-content-around my-5 mb-4">
+                <button mat-raised-button color="primary" appearance="fill" (click)="isUpdateFormOpen = false">Back</button>
+                  <button mat-raised-button color="primary" appearance="fill" (click)="saveWorkItem()">Calculate Amount</button>
+                  <button mat-raised-button color="primary" appearance="fill" (click)="saveWorkItem()">Save Changes</button>
+              </div>         
+          </form>
+        </div>
+    </div>
+    
+  </div>
+  
