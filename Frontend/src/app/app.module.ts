@@ -22,6 +22,16 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddTerminalFormComponent } from './add-terminal-form/add-terminal-form.component';
 import { UpdateTerminalFormComponent } from './update-terminal-form/update-terminal-form.component';
+import { AddVehicleFormComponent } from './add-vehicle-form/add-vehicle-form.component';
+import { VehiclesComponent } from './vehicles/vehicles.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -30,7 +40,11 @@ import { UpdateTerminalFormComponent } from './update-terminal-form/update-termi
     VehicleFilterPipe,
     TerminalsComponent,
     AddTerminalFormComponent,
-    UpdateTerminalFormComponent
+    UpdateTerminalFormComponent,
+    AddVehicleFormComponent,
+    VehiclesComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +64,12 @@ import { UpdateTerminalFormComponent } from './update-terminal-form/update-termi
     MatIconModule,
     MatTooltipModule,
     MatDialogModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatGridListModule,
+    MatMenuModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
