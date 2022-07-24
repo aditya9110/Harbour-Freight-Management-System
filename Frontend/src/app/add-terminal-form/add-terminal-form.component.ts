@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-terminal-form',
   templateUrl: './add-terminal-form.component.html',
-  styleUrls: ['./add-terminal-form.component.css']
+  styleUrls: ['./add-terminal-form.component.css'],
 })
 export class AddTerminalFormComponent implements OnInit {
 
