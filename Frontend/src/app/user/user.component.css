@@ -1,0 +1,53 @@
+::ng-deep :root {
+    --pri: #755139FF;
+    --sec: #F2EDD7FF;
+  }
+.wrapper{
+    
+    padding: 0 70px;
+  }
+  .head{
+    background: var(--sec);
+    color: var(--pri);
+    font-size: 24px;
+    position: relative;
+  }
+  .editProfile{
+    position: absolute;
+    right: 20px;
+    top: 12px;
+  }
+  .profileWrapper{
+    /* background: #00203FFF; */
+    background: var(--sec);
+  }
+  .textFieldWrapper{
+    /* background: #ADEFD1FF; */
+    background: var(--pri);
+    display: flex;
+    justify-content: space-between;    
+    height: 50px;
+    border-radius: 8px;
+    padding: 3px;
+    margin: 12px 100px ;
+  }
+  .fieldName{
+    background: var(--pri);
+    /* background: #ADEFD1FF; */
+    color: var(--sec);
+    /* color: #00203FFF; */
+    font-size: 18px;
+    line-height: 44px;
+    text-indent: 30px;
+  }
+  
+  .fieldValue{
+    background: var(--sec);
+    color: var(--pri);
+    z-index: 100;
+   width: 75%;
+    border-radius: 8px;
+    font-size: 18px;
+    line-height: 42px;
+    text-indent: 30px;
+  }
