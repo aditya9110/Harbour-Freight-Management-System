@@ -1,31 +1,3 @@
-<mat-toolbar  class = "mat-elevation-z8" style="background-color: #272727;">
-    <mat-toolbar-row>
-      <button mat-icon-button>
-        <mat-icon >directions_boat_filled</mat-icon>
-      </button>
-      <span style="color: aqua;">FTR</span>&nbsp;&nbsp;&nbsp;
-      <a mat-raised-button  href="#services"><mat-icon>account_circle</mat-icon>Services</a>&nbsp;&nbsp;&nbsp;
-      <a mat-raised-button href="#about"><mat-icon>account_circle</mat-icon>About us</a>&nbsp;&nbsp;&nbsp;
-      <div class="space"></div>
-      <a mat-raised-button routerLink="User" ><mat-icon>account_circle</mat-icon>User</a>&nbsp;&nbsp;&nbsp;
-      <a mat-raised-button routerLink="Admin" ><mat-icon>manage_accounts</mat-icon>Admin</a>&nbsp;&nbsp;&nbsp;
-      <a mat-raised-button routerLink="Register"><mat-icon>person_add</mat-icon>Register</a>&nbsp;&nbsp;&nbsp;
-      <a mat-raised-button routerLink="Register"><mat-icon>verified_user</mat-icon>Existing User</a>&nbsp;&nbsp;&nbsp;
-    </mat-toolbar-row>
-  </mat-toolbar>
-    <!-- <mat-sidenav-container>
-      <mat-sidenav #sidenav closed="true" mode="side">
-        <mat-nav-list>
-          <a mat-list-item><mat-icon>home</mat-icon>Home</a>
-          <a mat-list-item><mat-icon>miscellaneous_services</mat-icon>Services</a>
-          <a mat-list-item><mat-icon>help</mat-icon>About Us</a>
-        </mat-nav-list>
-      </mat-sidenav>
-    <mat-sidenav-content>
-      <div style="height : 88vh;"></div>
-    </mat-sidenav-content>
-    </mat-sidenav-container> -->
-    <!-- <app-dashboard></app-dashboard> -->
     <div>
       <div class = "containerr">
       <img src="https://img.freepik.com/premium-photo/transportation-logistics_37416-109.jpg?w=826" height="450" width="100%">
@@ -125,7 +97,7 @@
   
   
   
-  <div class="testimonials">
+  <div class="testimonials" id="testimonials">
     <div class="inner">
       <h1 style="font-size: 35px;">Testimonials</h1>
       <div class="border"></div>
@@ -202,8 +174,8 @@
     <div class="quick-links">
       <ul>
         <li class="quick-items"><a href="#">Home</a></li>
-        <li class="quick-items"><a href="#">Testimonials</a></li>
-        <li class="quick-items"><a href="#">Services</a></li>
+        <li class="quick-items"><a href="#testimonials">Testimonials</a></li>
+        <li class="quick-items"><a href="#services">Services</a></li>
         <li class="quick-items"><a href="#about">About us</a></li>
       </ul>
     </div>

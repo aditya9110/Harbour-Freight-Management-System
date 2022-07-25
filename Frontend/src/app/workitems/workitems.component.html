@@ -6,10 +6,17 @@
       </div>
     </div>
     <div class="workitemsWrapper mt-4 rounded py-2">
-      <mat-form-field appearance="outline" class="mx-5 mb-2">
-        <mat-label>Search By Name</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-      </mat-form-field>
+      <div class="d-flex justify-content-around mt-4">
+        <div>
+          <button mat-raised-button [routerLink]='["/add-workitem"]' routerLinkActive="active" color="primary">Add Work Item</button>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="mx-5 mb-2" style="width: 100%;">
+            <mat-label>Search By Name</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+          </mat-form-field>
+        </div>
+      </div>
       
       <div class="rounded">
         <mat-table  [dataSource]="dataSource" matSort>

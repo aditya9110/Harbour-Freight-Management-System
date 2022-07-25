@@ -39,6 +39,7 @@ import { AddWorkitemComponent } from './add-workitem/add-workitem.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { LoginNewComponent } from './login-new/login-new.component';
 import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -60,6 +61,7 @@ import { RegisterComponent } from './register/register.component';
     UserComponent,
     LoginNewComponent,
     RegisterComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

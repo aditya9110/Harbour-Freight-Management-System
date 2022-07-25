@@ -5,10 +5,17 @@
       </div>
     </div>
     <div class="terminalsWrapper mt-4 rounded py-2">
-      <mat-form-field appearance="outline" class="mx-5 mb-2">
-        <mat-label>Search By Name</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
-      </mat-form-field>
+      <div class="d-flex justify-content-around mt-4">
+        <div>
+          <button mat-raised-button [routerLink]='["/add-terminal"]' routerLinkActive="active" color="primary">Add Terminal</button>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="mx-5 mb-2" style="width: 100%;">
+            <mat-label>Search By Name</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+          </mat-form-field>
+        </div>
+      </div>
       
         <div class="rounded">
             <mat-table  [dataSource]="dataSource" matSort>
@@ -50,7 +57,10 @@
             
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef > Action </mat-header-cell>
-                <mat-cell *matCellDef="let row" class="text-primary "  (click)="openModal(row)"> View Item </mat-cell>
+                <mat-cell *matCellDef="let row" class="text-primary">
+                  <button mat-icon-button color="primary" (click)="openModal(row)" title="View Contact"><mat-icon>view_module</mat-icon></button>
+                  <button mat-icon-button color="primary" (click)="openModal(row)" title="View Contact"><mat-icon>delete</mat-icon></button>
+                </mat-cell>
             </ng-container>
         
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -79,7 +89,7 @@
                   </div>
                   <div class="fieldWrapper col">
                     <div class="nameWrapper">Terminal Name</div>
-                    <div class="valueWrapper">{{itemData.terminalName}</div>
+                    <div class="valueWrapper">{{itemData.terminalName}}</div>
                   </div>
                 </div>
                 <div class="row ">

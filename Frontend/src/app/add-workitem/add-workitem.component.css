@@ -11,3 +11,8 @@
   .formWrapper{
     background: #fff;
   }
+  .editWorkItem{
+    position: relative;
+    left: -100px;
+    top: 0px;
+  }
