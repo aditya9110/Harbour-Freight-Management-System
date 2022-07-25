@@ -1,0 +1,119 @@
+<div class="wrapper py-5">
+  <div class="head p-4 rounded d-flex justify-content-center">
+    <div>
+      Vehicles
+    </div>
+  </div>
+  <div class="vehiclesWrapper mt-4 rounded py-2">
+    <mat-form-field appearance="outline" class="mx-5 mb-2">
+      <mat-label>Search By Name</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+    </mat-form-field>
+    
+      <div class="rounded">
+          <mat-table  [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="vehicleNumber">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Number </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.vehicleNumber}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="vehicleName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.vehicleName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="maxLiftingCapacity">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Capacity </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.maxLiftingCapacity}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="retireDate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Retire Date </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.retireDate}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="country">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.country}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="vehicleStatus">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.vehicleStatus}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="harborLocation">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Harbor Location </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.harborLocation}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef > Action </mat-header-cell>
+              <mat-cell *matCellDef="let row" class="text-primary "  (click)="openModal(row)"> View Item </mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      
+          <!-- Row shown when there is no matching data. -->
+          <div class="mat-row w-100 py-5" *matNoDataRow>
+              <p class="w-100 text-center fs-4">No data matching the filter "{{input.value}}"</p>
+          </div>
+          </mat-table>
+    
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div> 
+  </div>
+
+  <!-- details modal -->
+  <div *ngIf="isModalOpen" class="Modal">
+      <div class="Modal-content" >
+          <span id="closeModal" class="Close" (click)="closeModal()">&times;</span>
+          <h1 class="text-center">Workitem - {{itemData.vehicleNumber}} </h1>
+          <div class="px-4 h-75" *ngIf="!isUpdateFormOpen">
+              <div class="row ">
+                <div class="fieldWrapper col">
+                    <div class="nameWrapper">Vehicle Number</div>
+                    <div class="valueWrapper">{{itemData.vehicleNumber}}</div>
+                </div>
+                <div class="fieldWrapper col">
+                  <div class="nameWrapper">Vehicle Name</div>
+                  <div class="valueWrapper">{{itemData.vehicleName}}</div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="fieldWrapper col">
+                    <div class="nameWrapper">Lifting Capacity</div>
+                    <div class="valueWrapper">{{itemData.maxLiftingCapacity}}</div>
+                </div>
+                <div class="fieldWrapper col">
+                  <div class="nameWrapper">Retire Date</div>
+                  <div class="valueWrapper">{{itemData.retireDate}}</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="fieldWrapper col">
+                  <div class="nameWrapper">Status</div>
+                  <div class="valueWrapper">
+                      <input type="text" matInput [(ngModel)]='newStatus' placeholder={{itemData.vehicleStatus}}>
+                  </div>
+                </div>
+                <div class="fieldWrapper col">
+                  <div class="nameWrapper">Country</div>
+                  <div class="valueWrapper">{{itemData.country}}</div>
+                </div>
+                <div class="fieldWrapper col">
+                  <div class="nameWrapper">Harbor</div>
+                  <div class="valueWrapper">{{itemData.harborLocation}}</div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-around my-5 mb-4">
+                <button mat-raised-button (click)="closeModal()">Close</button>
+                <button mat-raised-button color="primary" (click)="updateStatus(newStatus)">Update</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+  

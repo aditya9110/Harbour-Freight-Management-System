@@ -1,46 +1,132 @@
-<div class="container-fluid center">
-    <div class="card card-primary" style="width: 60rem;">
-        <div class="card-header text-white" style="background-color: #00AA9E;">
-            Terminals
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <button class="my-2" mat-raised-button color="primary">
-                    <span class="material-icons">add</span> Add Terminal
-                </button>
-            </div>
-            <div class="row">
-                <div *ngFor="let terminal of terminals" [ngSwitch]="terminal.status" class="col-md-4">
+<div class="wrapper py-5">
+    <div class="head p-4 rounded d-flex justify-content-center">
+      <div>
+        Terminals
+      </div>
+    </div>
+    <div class="terminalsWrapper mt-4 rounded py-2">
+      <mat-form-field appearance="outline" class="mx-5 mb-2">
+        <mat-label>Search By Name</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+      </mat-form-field>
+      
+        <div class="rounded">
+            <mat-table  [dataSource]="dataSource" matSort>
+  
+            <ng-container matColumnDef="terminalId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.terminalId}} </mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="terminalName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.terminalName}} </mat-cell>
+            </ng-container>
 
-                    <div *ngSwitchCase="'AVAILABLE'" class="card my-3" style="width: 18rem;">
-                        <div class="card-body" style="background-color: rgba(223, 26, 26, 0.91); border-radius: 7%;">
-                            <h5 class="card-title" style="color: rgb(255, 255, 255);">{{terminal.terminalName}}</h5>
-                            <p class="card-text">{{terminal.terminalDescription}}</p>
-                            <div class="row justify-content-around">
-                                <button type="button" class="btn btn-info">View</button>
-                                <button type="button" mat-mini-fab matTooltip="Delete" color="black" data-toggle="modal" data-target="#deleteModal">
-                                    <span class="material-icons">delete</span>
-                                </button>
-                            </div>
-                        </div>
+            <ng-container matColumnDef="country">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.country}} </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="itemType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Item Type </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.itemType}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="availableCapacity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Available Capacity </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.availableCapacity}} </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="harborLocation">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Harbor Location </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.harborLocation}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef > Action </mat-header-cell>
+                <mat-cell *matCellDef="let row" class="text-primary "  (click)="openModal(row)"> View Item </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        
+            <!-- Row shown when there is no matching data. -->
+            <div class="mat-row w-100 py-5" *matNoDataRow>
+                <p class="w-100 text-center fs-4">No data matching the filter "{{input.value}}"</p>
+            </div>
+            </mat-table>
+      
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div> 
+    </div>
+  
+    <!-- details modal -->
+    <div *ngIf="isModalOpen" class="Modal">
+        <div class="Modal-content" >
+            <span id="closeModal" class="Close" (click)="closeModal()">&times;</span>
+            <h1 class="text-center">Terminal - {{itemData.terminalId}} </h1>
+            <div class="px-4 h-75" *ngIf="!isUpdateFormOpen">
+                <div class="row ">
+                  <div class="fieldWrapper col">
+                      <div class="nameWrapper">Terminal Id</div>
+                      <div class="valueWrapper">{{itemData.terminalId}}</div>
+                  </div>
+                  <div class="fieldWrapper col">
+                    <div class="nameWrapper">Terminal Name</div>
+                    <div class="valueWrapper">{{itemData.terminalName}</div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="fieldWrapper col">
+                      <div class="nameWrapper">Country</div>
+                      <div class="valueWrapper">{{itemData.country}}</div>
+                  </div>
+                  <div class="fieldWrapper col">
+                    <div class="nameWrapper">Item Type</div>
+                    <div class="valueWrapper">{{itemData.itemType}}</div>
+                  </div>
+                </div>
+                <div class="row ">
+                    <div class="fieldWrapper col">
+                        <div class="nameWrapper">Terminal Description</div>
+                        <div class="valueWrapper">{{itemData.terminalDescription}}</div>
                     </div>
-                    <div *ngSwitchCase="'NOTAVAILABLE'" class="card my-3" style="width: 18rem;">
-                        <div class="card-body" style="background-color: rgba(26, 223, 49, 0.91); border-radius: 7%;">
-                            <h5 class="card-title">{{terminal.terminalName}}</h5>
-                            <p class="card-text">{{terminal.terminalDescription}}</p>
-                            <div class="row justify-content-around">
-                                <button type="button" class="btn btn-info">View</button>
-                                <button type="button" mat-mini-fab matTooltip="Delete" color="black" data-toggle="modal" data-target="#deleteModal">
-                                    <span class="material-icons">delete</span>
-                                </button>
-                            </div>
-                        </div>
+                </div>
+                <div class="row ">
+                    <div class="fieldWrapper col-mb-4">
+                        <div class="nameWrapper">Capacity</div>
+                        <div class="valueWrapper">{{itemData.capacity}}</div>
                     </div>
+                    <div class="fieldWrapper col-mb-8">
+                      <div class="nameWrapper">Available Capacity</div>
+                      <div class="valueWrapper">{{itemData.availableCapacity}}</div>
+                    </div>
+                </div>  
+                <div class="row">
+                  <div class="fieldWrapper col">
+                    <div class="nameWrapper">Status</div>
+                    <div class="valueWrapper">{{itemData.status}}</div>
+                  </div>
+                  <div class="fieldWrapper col">
+                    <div class="nameWrapper">Harbor</div>
+                    <div class="valueWrapper">{{itemData.harborLocation}}</div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-around my-5 mb-4">
+                  <button mat-raised-button (click)="closeModal()">Close</button>
+                  <!-- <button mat-raised-button color="primary" (click)="updateCapacity(newCapValue)">Update</button> -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+    
 <!-- delete modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
