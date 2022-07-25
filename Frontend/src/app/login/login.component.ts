@@ -21,7 +21,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   ]
 })
 export class LoginComponent implements OnInit {
-
+  hide = true;
   state = 'register';
   personalDetails!: FormGroup;
   addressDetails!: FormGroup;
