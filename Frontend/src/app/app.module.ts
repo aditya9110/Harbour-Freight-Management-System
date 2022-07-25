@@ -37,6 +37,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import { AddWorkitemComponent } from './add-workitem/add-workitem.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { LoginNewComponent } from './login-new/login-new.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -56,6 +58,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     AddWorkitemComponent,
     EditProfileComponent,
     UserComponent,
+    LoginNewComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

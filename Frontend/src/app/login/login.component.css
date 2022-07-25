@@ -81,13 +81,13 @@ form {
 	text-align: center;
 }
 
-input {
+/* input {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
-}
+} */
 
 .container {
 	background-color: #fff;
@@ -99,6 +99,9 @@ input {
 	width: 768px;
 	max-width: 100%;
 	min-height: 480px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .form-container {

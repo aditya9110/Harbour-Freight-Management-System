@@ -1,0 +1,132 @@
+<div class="wrapper py-5">
+    <div class="head p-4 rounded text-center">
+        Register
+    </div>
+    <div class="formWrapper mt-5 rounded p-4 px-5">
+        <form [formGroup]="userForm" class="p-4" >
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>First Name</mat-label>
+                        <input formControlName="firstName" type="text" matInput placeholder="Enter First name">
+                        <mat-error *ngIf="f['firstName'].touched && f['firstName'].invalid" >
+                            <mat-error *ngIf="f['firstName'].errors && f['firstName'].errors['required']">First Name is required.</mat-error>
+                            <mat-error *ngIf="f['firstName'].errors && f['firstName'].errors['maxlength']">First Name should not be greater than 20 character.</mat-error>
+                        </mat-error>
+                    </mat-form-field>                       
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>Last Name</mat-label>
+                      <input  formControlName="lastName" type="text" matInput placeholder="Enter Last name">
+                      <mat-error *ngIf="f['lastName'].touched && f['lastName'].invalid">
+                        <mat-error *ngIf="f['lastName'].errors && f['lastName'].errors['required']">Last Name is required.</mat-error>
+                        <mat-error *ngIf="f['lastName'].errors && f['lastName'].errors['maxlength']">Last Name should not be greater than 20 character.</mat-error>
+                      </mat-error>
+                    </mat-form-field>                    
+                </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Email</mat-label>
+                  <input formControlName="email" type="email" matInput placeholder="ex: abc@xyz.com">
+                  <mat-error *ngIf="f['email'].touched && f['email'].invalid">
+                    <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</mat-error>
+                    <mat-error *ngIf="f['email'].errors && f['email'].errors['email']">Please, enter valid email address.</mat-error>
+                   </mat-error>
+                </mat-form-field>                
+              </div>
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Mobile Number</mat-label>
+                  <input formControlName="mobno" type="text" matInput placeholder="Enter Mobile Number">
+                  <mat-error *ngIf="f['mobno'].touched && f['mobno'].invalid">  
+                    <mat-error *ngIf="f['mobno'].errors && f['mobno'].errors['required']">Mobile Number is required.</mat-error>  
+                    <mat-error *ngIf="f['mobno'].errors && f['mobno'].errors['pattern']">Please, Enter 10 digit Mobile Number.</mat-error>  
+                 </mat-error> 
+                </mat-form-field>                 
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"> 
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="f['password'].touched && f['password'].invalid" >
+                        <mat-error *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</mat-error>                  
+                        <mat-error *ngIf="f['password'].errors && f['password'].errors['pattern']">Password must be between 7 to 15 characters long & contain digits, chars and special chars</mat-error>                   
+                    </mat-error>
+                  
+                </mat-form-field>              
+              </div>
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Nationality</mat-label>
+                  <input formControlName="nationality" type="text" matInput placeholder="Enter Nationality">
+                  <mat-error *ngIf="f['nationality'].touched && f['nationality'].invalid" >
+                    <mat-error *ngIf="f['nationality'].errors && f['nationality'].errors['required']">Nationality is required.</mat-error>
+                    <mat-error *ngIf="f['nationality'].errors && f['nationality'].errors['maxlength']">Should not be greater than 20 character.</mat-error>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Passport Number</mat-label>
+                  <input formControlName="passportno" matInput placeholder="Enter Passport Number">
+                  <mat-error *ngIf="f['passportno'].touched && f['passportno'].invalid" >
+                    <mat-error *ngIf="f['passportno'].errors && f['passportno'].errors['required']">Passport Number is required.</mat-error>
+                    <mat-error *ngIf="f['passportno'].errors && f['passportno'].errors['minlength']">Should not be smaller than 7 character.</mat-error>
+                    <mat-error *ngIf="f['passportno'].errors && f['passportno'].errors['maxlength']">Should not be greater than 12 character.</mat-error>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Personal Identification Number</mat-label>
+                  <input formControlName="pidno" type="text" matInput placeholder="Enter Personal Identification Number">                  
+                  <mat-error *ngIf="f['pidno'].touched && f['pidno'].invalid">  
+                    <mat-error *ngIf="f['pidno'].errors && f['pidno'].errors['required']">Personal Id Number is required.</mat-error>  
+                    <mat-error *ngIf="f['pidno'].errors && f['pidno'].errors['pattern']">Please, Enter 10 digit Personal Id Number.</mat-error>  
+                  </mat-error> 
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Permanent Address</mat-label>
+                  <textarea input formControlName="permanentAddress" type="text" matInput placeholder="Enter Permanent Address"></textarea>
+                </mat-form-field>
+                <mat-error *ngIf="f['permanentAddress'].touched && f['permanentAddress'].invalid">
+                  <mat-error *ngIf="f['permanentAddress'].errors && f['permanentAddress'].errors['required']">Permanent Address is required.</mat-error>
+                  <mat-error *ngIf="f['nationality'].errors && f['nationality'].errors['maxlength']">Should not be more than 200 character.</mat-error>
+                </mat-error>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Office Address</mat-label>
+                  <textarea formControlName="officeAddress" type="text" matInput placeholder="Enter Office Address"></textarea>
+                </mat-form-field>
+                <mat-error *ngIf="f['officeAddress'].touched && f['officeAddress'].invalid" >
+                  <mat-error *ngIf="f['officeAddress'].errors && f['officeAddress'].errors['required']">Office Address is required.</mat-error>
+                  <mat-error *ngIf="f['officeAddress'].errors && f['officeAddress'].errors['maxlength']">Should not be more than 200 character.</mat-error>
+                </mat-error>
+              </div>
+            </div>
+            <div class="d-flex flex-column align-items-center justify-content-around mt-4">
+                <button (click)="registerUser()" class="w-25 my-3" mat-raised-button color="primary" [disabled]="userForm.invalid">Register</button>
+                Already a registered user? Login here
+                <button class="w-25 mt-3" mat-raised-button color="primary" appearance="fill" [routerLink]='["/login"]' routerLinkActive="active">Login</button>
+            </div>
+            
+      </form>
+    </div>
+</div>
