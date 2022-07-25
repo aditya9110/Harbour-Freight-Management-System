@@ -53,6 +53,7 @@ export class AdminDashboardComponent implements AfterViewInit {
   itemData!: WorkItem;
   isUpdateFormOpen: boolean = false;
   minDate = new Date();
+  isDeleteModalOpen:boolean = false;
 
   constructor() { }
 
