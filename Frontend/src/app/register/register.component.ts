@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-register',
@@ -11,20 +13,20 @@ export class RegisterComponent implements OnInit {
   userForm!:FormGroup;
 
 
-  constructor(private formBuilder:FormBuilder){}
+  constructor(private formBuilder:FormBuilder, private loginService: LoginService, private router: Router){}
 
   ngOnInit(): void {
     this.userForm=this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(20)]],
-      email: ['', [Validators.required, Validators.email]],
-      mobno: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-      password: ['', [Validators.required,Validators.pattern("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{7, 15}$")]],
+      emailId: ['', [Validators.required, Validators.email]],
+      mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      password: ['', Validators.required],
       nationality: ['', [Validators.required, Validators.maxLength(20)]],
-      passportno: ['', [Validators.required, Validators.minLength(7),Validators.maxLength(12)]],
+      passportNumber: ['', [Validators.required, Validators.minLength(7),Validators.maxLength(12)]],
       permanentAddress: ['', [Validators.required, Validators.maxLength(200)]],
       officeAddress: ['', [Validators.required, Validators.maxLength(200)]],
-      pidno: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{12}$")]]
+      personalIdentificationNumber: ['', [Validators.required, Validators.pattern("^[0-9]{12}$")]]
   
     });
   }
@@ -37,6 +39,8 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(){
-    console.log('Form data is ', this.userForm.value);
+    this.loginService.registerUser(this.userForm.value).subscribe(
+      data => {this.router.navigate(['/login']);})
+    // console.log('Form data is ', this.userForm.value);
   }
 }

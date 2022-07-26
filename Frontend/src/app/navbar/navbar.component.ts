@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  isAdmin : any
+  
   public logoutBtn() {
     localStorage.clear()
     this.router.navigate(['/']);  
@@ -15,6 +17,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.isAdmin = localStorage.getItem('isAdmin')
   }
 
 }

@@ -40,6 +40,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { LoginNewComponent } from './login-new/login-new.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LoginService } from './login.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -102,8 +104,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatCardModule,
     MatSelectModule,
     MatRadioModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

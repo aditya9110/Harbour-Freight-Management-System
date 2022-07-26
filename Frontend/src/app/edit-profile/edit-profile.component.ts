@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators, } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,26 +11,21 @@ import { FormBuilder, FormControl, Validators, } from '@angular/forms';
 export class EditProfileComponent {
   title="ftr";
   hide=true;
-  constructor(private formBuilder:FormBuilder){}
+  constructor(private formBuilder:FormBuilder, private loginService: LoginService, private router: Router){}
 
   userForm=this.formBuilder.group({
-    firstName:new FormControl('shubham', [Validators.required, Validators.maxLength(20)]),
-    lastName:new FormControl('', [Validators.required, Validators.maxLength(20)]),
-    email:new FormControl('', [Validators.required, Validators.email]),
-    mobno:new FormControl ('', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
-    password:new FormControl('', [Validators.required, Validators.minLength(7),Validators.maxLength(15)]),
-    nationality:new FormControl('', [Validators.required, Validators.maxLength(20)]),
-    passportno:new FormControl('', [Validators.required, Validators.minLength(7),Validators.maxLength(12)]),
+    mobileNumber:new FormControl ('', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
     permanentAddress:new FormControl('', [Validators.required, Validators.maxLength(200)]),
     officeAddress:new FormControl('', [Validators.required, Validators.maxLength(200)]),
-    pidno:new FormControl ('', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{12}$")])
-
   });
   get f(){
     return this.userForm.controls;
   }
 
+  successMsg = ''
   saveForm(){
+    this.loginService.updateUser(localStorage.getItem('userId'), this.userForm.value).subscribe(
+      data => {console.log(data)}, error => this.successMsg = error.error.text)
     console.log('Form data is ', this.userForm.value);
   }
 

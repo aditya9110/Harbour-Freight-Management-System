@@ -30,20 +30,20 @@
               <div class="col">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Email</mat-label>
-                  <input formControlName="email" type="email" matInput placeholder="ex: abc@xyz.com">
-                  <mat-error *ngIf="f['email'].touched && f['email'].invalid">
-                    <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</mat-error>
-                    <mat-error *ngIf="f['email'].errors && f['email'].errors['email']">Please, enter valid email address.</mat-error>
+                  <input formControlName="emailId" type="email" matInput placeholder="ex: abc@xyz.com">
+                  <mat-error *ngIf="f['emailId'].touched && f['emailId'].invalid">
+                    <mat-error *ngIf="f['emailId'].errors && f['emailId'].errors['required']">Email is required.</mat-error>
+                    <mat-error *ngIf="f['emailId'].errors && f['emailId'].errors['email']">Please, enter valid email address.</mat-error>
                    </mat-error>
                 </mat-form-field>                
               </div>
               <div class="col">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Mobile Number</mat-label>
-                  <input formControlName="mobno" type="text" matInput placeholder="Enter Mobile Number">
-                  <mat-error *ngIf="f['mobno'].touched && f['mobno'].invalid">  
-                    <mat-error *ngIf="f['mobno'].errors && f['mobno'].errors['required']">Mobile Number is required.</mat-error>  
-                    <mat-error *ngIf="f['mobno'].errors && f['mobno'].errors['pattern']">Please, Enter 10 digit Mobile Number.</mat-error>  
+                  <input formControlName="mobileNumber" type="text" matInput placeholder="Enter Mobile Number">
+                  <mat-error *ngIf="f['mobileNumber'].touched && f['mobileNumber'].invalid">  
+                    <mat-error *ngIf="f['mobileNumber'].errors && f['mobileNumber'].errors['required']">Mobile Number is required.</mat-error>  
+                    <mat-error *ngIf="f['mobileNumber'].errors && f['mobileNumber'].errors['pattern']">Please, Enter 10 digit Mobile Number.</mat-error>  
                  </mat-error> 
                 </mat-form-field>                 
               </div>
@@ -78,21 +78,21 @@
               <div class="col">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Passport Number</mat-label>
-                  <input formControlName="passportno" matInput placeholder="Enter Passport Number">
-                  <mat-error *ngIf="f['passportno'].touched && f['passportno'].invalid" >
-                    <mat-error *ngIf="f['passportno'].errors && f['passportno'].errors['required']">Passport Number is required.</mat-error>
-                    <mat-error *ngIf="f['passportno'].errors && f['passportno'].errors['minlength']">Should not be smaller than 7 character.</mat-error>
-                    <mat-error *ngIf="f['passportno'].errors && f['passportno'].errors['maxlength']">Should not be greater than 12 character.</mat-error>
+                  <input formControlName="passportNumber" matInput placeholder="Enter Passport Number">
+                  <mat-error *ngIf="f['passportNumber'].touched && f['passportNumber'].invalid" >
+                    <mat-error *ngIf="f['passportNumber'].errors && f['passportNumber'].errors['required']">Passport Number is required.</mat-error>
+                    <mat-error *ngIf="f['passportNumber'].errors && f['passportNumber'].errors['minlength']">Should not be smaller than 7 character.</mat-error>
+                    <mat-error *ngIf="f['passportNumber'].errors && f['passportNumber'].errors['maxlength']">Should not be greater than 12 character.</mat-error>
                   </mat-error>
                 </mat-form-field>
               </div>
               <div class="col">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Personal Identification Number</mat-label>
-                  <input formControlName="pidno" type="text" matInput placeholder="Enter Personal Identification Number">                  
-                  <mat-error *ngIf="f['pidno'].touched && f['pidno'].invalid">  
-                    <mat-error *ngIf="f['pidno'].errors && f['pidno'].errors['required']">Personal Id Number is required.</mat-error>  
-                    <mat-error *ngIf="f['pidno'].errors && f['pidno'].errors['pattern']">Please, Enter 10 digit Personal Id Number.</mat-error>  
+                  <input formControlName="personalIdentificationNumber" type="text" matInput placeholder="Enter Personal Identification Number">                  
+                  <mat-error *ngIf="f['personalIdentificationNumber'].touched && f['personalIdentificationNumber'].invalid">  
+                    <mat-error *ngIf="f['personalIdentificationNumber'].errors && f['personalIdentificationNumber'].errors['required']">Personal Id Number is required.</mat-error>  
+                    <mat-error *ngIf="f['personalIdentificationNumber'].errors && f['personalIdentificationNumber'].errors['pattern']">Please, Enter 12 digit Personal Id Number.</mat-error>  
                   </mat-error> 
                 </mat-form-field>
               </div>
