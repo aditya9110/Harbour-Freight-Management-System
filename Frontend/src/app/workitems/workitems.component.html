@@ -63,7 +63,7 @@
 
           <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef > Action </mat-header-cell>
-            <mat-cell *matCellDef="let row" class="text-primary "  (click)="openModal(row)"> View Item </mat-cell>
+            <mat-cell *matCellDef="let row" class="text-primary "  (click)="openModal(row)"> <mat-icon>view_module</mat-icon> </mat-cell>
           </ng-container>
       
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

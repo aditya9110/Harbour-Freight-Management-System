@@ -7,6 +7,12 @@
   .head{
     background: #fff;
     font-size: 24px;
+    position: relative;
+  }
+  .editProfile{
+    position: absolute;
+    left: 20px;
+    top: 12px;
   }
   .formWrapper{
     background: #fff;
