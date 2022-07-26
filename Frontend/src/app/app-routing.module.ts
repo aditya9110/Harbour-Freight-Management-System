@@ -9,6 +9,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { HomeComponent } from './home/home.component';
 import { LoginNewComponent } from './login-new/login-new.component';
 import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { TerminalsComponent } from './terminals/terminals.component';
 import { UserComponent } from './user/user.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'login', component: LoginNewComponent},
   { path: 'register', component: RegisterComponent},
+  { path: 'navbar', component: NavbarComponent},
   
   // user
   { path: 'profile', component: UserComponent},
