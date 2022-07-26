@@ -1,6 +1,9 @@
 ::ng-deep :root {
-    --pri: #755139FF;
-    --sec: #F2EDD7FF;
+    /* --pri: #755139FF;
+    --sec: #F2EDD7FF; */
+    --pri: #000;
+    --sec: #fff;
+    --back: #e5e5e5;
   }
 .wrapper{
     
@@ -23,7 +26,7 @@
   }
   .textFieldWrapper{
     /* background: #ADEFD1FF; */
-    background: var(--pri);
+    background: var(--back);
     display: flex;
     justify-content: space-between;    
     height: 50px;
@@ -32,9 +35,9 @@
     margin: 12px 100px ;
   }
   .fieldName{
-    background: var(--pri);
+    background: var(--back);
     /* background: #ADEFD1FF; */
-    color: var(--sec);
+    color: var(--pri);
     /* color: #00203FFF; */
     font-size: 18px;
     line-height: 44px;
