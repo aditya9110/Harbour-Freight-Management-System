@@ -23,7 +23,7 @@
 
           <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.workitemId}} </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="itemName">
@@ -53,12 +53,12 @@
 
           <ng-container matColumnDef="shippingDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Shipping Date </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.shippingDate}} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.shippingDate | date:'dd/MM/yyyy'}} </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="amount">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.amount | number:'1.0':'en-IN'}} </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="action">
@@ -84,7 +84,7 @@
     <div *ngIf="isModalOpen" class="Modal">
         <div class="Modal-content" >
             <span id="closeModal" class="Close" (click)="closeModal()">&times;</span>
-            <h1 class="text-center">Workitem - {{itemData.id}} </h1>
+            <h1 class="text-center">Workitem - {{itemData.workitemId}} </h1>
             <div class="px-4 h-75" *ngIf="!isUpdateFormOpen">
                 <div class="row ">
                   <div class="fieldWrapper col">

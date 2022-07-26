@@ -32,8 +32,6 @@ export class RegisterComponent implements OnInit {
   }
  
 
-  // ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 15}$
-
   get f(){
     return this.userForm.controls;
   }

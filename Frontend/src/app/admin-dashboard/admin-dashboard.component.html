@@ -21,7 +21,7 @@
 
         <ng-container matColumnDef="id">
           <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.workItemId}} </mat-cell>
+          <mat-cell *matCellDef="let row"> {{row.workitemId}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="itemName">
@@ -51,19 +51,19 @@
 
         <ng-container matColumnDef="shippingDate">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Shipping Date </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.shippingDate}} </mat-cell>
+          <mat-cell *matCellDef="let row"> {{row.shippingDate | date:'dd/MM/yyyy'}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="amount">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+          <mat-cell *matCellDef="let row"> {{row.amount | number:'1.0':'en-IN'}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef > Action </mat-header-cell>
           <mat-cell *matCellDef="let row" class="text-primary">
             <button mat-icon-button color="primary" (click)="openModal(row)" title="View Contact"><mat-icon>view_module</mat-icon></button>
-            <button mat-icon-button color="primary" (click)="isDeleteModalOpen = true" title="View Contact"><mat-icon>delete</mat-icon></button>
+            <button mat-icon-button color="primary" title="View Contact"><mat-icon>edit</mat-icon></button>
           </mat-cell>
         </ng-container>
     
@@ -83,7 +83,7 @@
   <div *ngIf="isModalOpen" class="Modal">
       <div class="Modal-content" >
           <span id="closeModal" class="Close" (click)="closeModal()">&times;</span>
-          <h1 class="text-center">Workitem - {{itemData.workItemId}} </h1>
+          <h1 class="text-center">Workitem - {{itemData.workitemId}} </h1>
           <div class="px-4 h-75" *ngIf="!isUpdateFormOpen">
               <div class="row ">
                 <div class="fieldWrapper col">
@@ -151,7 +151,7 @@
    <div class="Modal" *ngIf="isDeleteModalOpen">
     <div class="Modal-content w-50 mt-5">
       <span id="closeModal" class="Close" (click)="isDeleteModalOpen = false">&times;</span>
-      <h1 class="text-center mt-5">Do you want to delete workitem?</h1>
+      <h1 class="text-center mt-5"> workitem?</h1>
       <div class="d-flex justify-content-around my-5 mb-4">
         <button mat-raised-button (click)="isDeleteModalOpen = false" >Close</button>
         <button mat-raised-button color="primary" (click)="isDeleteModalOpen = false" >Delete</button>

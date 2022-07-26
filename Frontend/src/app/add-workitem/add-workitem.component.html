@@ -94,8 +94,12 @@
                 </div>
                 <div class="col-6">
                     <mat-form-field appearance="outline" class="w-100" > 
-                        <mat-label>Item Type</mat-label>    
-                        <input matInput placeholder="" formControlName="itemType"> 
+                        <mat-label>Item Type</mat-label> 
+                        <mat-select formControlName="itemType">
+                            <mat-option *ngFor="let type of itemList" [value]="type">
+                                {{type}}
+                            </mat-option>
+                        </mat-select>
                         <mat-error *ngIf="f['itemType'].touched">
                             <mat-error *ngIf="f['itemType'].errors && f['itemType'].errors['required']">This is required</mat-error>
                             <mat-error *ngIf="f['itemType'].errors && (f['itemType'].errors['minlength'] || f['itemType'].errors['maxlength'])">Item Name should be between 4 to 25 characters</mat-error>  
@@ -128,9 +132,8 @@
                 </div>   
                 <div class="col-3">
                     <mat-form-field appearance="outline" class="w-100"> 
-                        <mat-label>Capacity</mat-label>    
-                        <input matInput placeholder=""  formControlName="capacity">  
-                        <span matSuffix>kg</span>  
+                        <mat-label>Quantity</mat-label>    
+                        <input matInput placeholder=""  formControlName="quantity">
                     </mat-form-field>  
                 </div>               
             </div>
@@ -159,11 +162,11 @@
             <div class="row mb-2">
                 <div class="col-6">
                     <mat-form-field appearance="outline" class="w-100"> 
-                        <mat-label>Available Harbor Location</mat-label>    
-                        <input matInput placeholder="" formControlName="availableHarborLocation">  
-                        <mat-error *ngIf="f['availableHarborLocation'].touched">
-                            <mat-error *ngIf="f['availableHarborLocation'].errors && f['availableHarborLocation'].errors['required']">This is required</mat-error>
-                            <mat-error *ngIf="f['availableHarborLocation'].errors && (f['availableHarborLocation'].errors['minlength'] || f['availableHarborLocation'].errors['maxlength'])">Item Name should be between 5 to 25 characters</mat-error>  
+                        <mat-label>Available Harbor Location</mat-label>
+                        <input matInput placeholder="" formControlName="availableHarborLocations">
+                        <mat-error *ngIf="f['availableHarborLocations'].touched">
+                            <mat-error *ngIf="f['availableHarborLocations'].errors && f['availableHarborLocations'].errors['required']">This is required</mat-error>
+                            <mat-error *ngIf="f['availableHarborLocations'].errors && (f['availableHarborLocations'].errors['minlength'] || f['availableHarborLocations'].errors['maxlength'])">Item Name should be between 5 to 25 characters</mat-error>  
                         </mat-error>          
                     </mat-form-field>  
                 </div>
@@ -181,7 +184,7 @@
                 </div>              
             </div>
             <div class="d-flex justify-content-around mt-4">
-                <button mat-raised-button color="primary" appearance="fill" (click)="createWorkItem()">Calculate Amount</button>
+                <!-- <button mat-raised-button color="primary" appearance="fill" (click)="createWorkItem()">Calculate Amount</button> -->
                 <button mat-raised-button color="primary" appearance="fill" (click)="createWorkItem()" [disabled]="workItemForm.invalid">Create Work Item</button>
             </div>         
         </form>

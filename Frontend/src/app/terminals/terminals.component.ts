@@ -83,6 +83,6 @@ export class TerminalsComponent implements OnInit {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this.router.navigate([currentUrl]);
     });
-}
+  }
 
 }
