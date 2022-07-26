@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  profileData : any
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loginService.getProfile(localStorage.getItem('userId')).subscribe(
+      (data) => this.profileData = data
+    )
   }
 
 }

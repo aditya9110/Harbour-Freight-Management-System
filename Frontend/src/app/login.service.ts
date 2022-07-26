@@ -21,7 +21,11 @@ export class LoginService {
 
   updateUser(id:any, data:any) : Observable<any> {
     return this.http.put(this.url + `/${id}`, data)
-  }  
+  }
+
+  getProfile(id:any) : Observable<any> {
+    return this.http.get(this.url + `/${id}`)
+  }
 
   public isloggedIn = false;
 

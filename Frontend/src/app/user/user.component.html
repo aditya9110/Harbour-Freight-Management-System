@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="wrapper py-5">
     <div class="head p-4 rounded text-center">
       <div>
@@ -7,38 +8,39 @@
         <mat-icon>edit</mat-icon>
       </button>
     </div>
+    
     <div class="profileWrapper mt-4 rounded p-5">
         <div class="textFieldWrapper">
             <div class="fieldName">Full Name</div>
-            <div class="fieldValue">Annie Thomas</div>
+            <div class="fieldValue">{{profileData.firstName + ' ' + profileData.lastName}}</div>
         </div>
         <div class="textFieldWrapper">
             <div class="fieldName">Email</div>
-            <div class="fieldValue">anniethomas@gmail.com</div>
+            <div class="fieldValue">{{profileData.emailId}}</div>
         </div>
         <div class="textFieldWrapper">
             <div class="fieldName">Mobile No.</div>
-            <div class="fieldValue">7894561327</div>
+            <div class="fieldValue">{{profileData.mobileNumber}}</div>
         </div>
         <div class="textFieldWrapper">
             <div class="fieldName">Nationality</div>
-            <div class="fieldValue">Indian</div>
+            <div class="fieldValue">{{profileData.nationality}}</div>
         </div>
         <div class="textFieldWrapper">
             <div class="fieldName">Passport Number</div>
-            <div class="fieldValue">A7878765</div>
+            <div class="fieldValue">{{profileData.passportNumber}}</div>
         </div>
         <div class="textFieldWrapper">
             <div class="fieldName">Permanent Address</div>
-            <div class="fieldValue">195/12, Cross, Lalbagh Road, K S Garden,  Bangalore.</div>
+            <div class="fieldValue">{{profileData.permanentAddress}}</div>
         </div>
         <div class="textFieldWrapper">
             <div class="fieldName">Office Address</div>
-            <div class="fieldValue">195/12, Cross, Lalbagh Road, K S Garden,  Bangalore.</div>
+            <div class="fieldValue">{{profileData.officeAddress}}</div>
         </div>
         <div class="textFieldWrapper">
             <div class="fieldName">Personal Identification No.</div>
-            <div class="fieldValue">676767898765</div>
+            <div class="fieldValue">{{profileData.personalIdentificationNumber}}</div>
         </div>
     </div>
 </div>
