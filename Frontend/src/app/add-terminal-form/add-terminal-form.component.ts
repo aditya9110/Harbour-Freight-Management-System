@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TerminalService } from '../terminal.service';
 
 @Component({
   selector: 'app-add-terminal-form',
@@ -8,7 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class AddTerminalFormComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder, private terminalService: TerminalService, private router: Router,) { }
 
   get terminalName() {
     return this.addTerminalForm.controls['terminalName']
@@ -45,7 +47,7 @@ export class AddTerminalFormComponent implements OnInit {
       terminalDescription:['',[Validators.required, Validators.maxLength(25), this.validateTerminalDescription]],
       capacity:['',[Validators.required, Validators.max(99999)]],
       availableCapacity:['',[Validators.required, Validators.max(99999)]],
-      status:['AVAILABLE',Validators.required],
+      status:['Available',Validators.required],
       });
   }
 
@@ -59,6 +61,6 @@ export class AddTerminalFormComponent implements OnInit {
   }
 
   addTerminal() {
-    
+    this.terminalService.addTerminalData(this.addTerminalForm.value).subscribe(() => {this.router.navigate(['/terminals'])})
   }
 }

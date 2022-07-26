@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { VehicleService } from '../vehicle.service';
 
 @Component({
   selector: 'app-add-vehicle-form',
@@ -9,7 +11,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class AddVehicleFormComponent implements OnInit {
 
   minDate = new Date();
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder, private vehicleService: VehicleService, private router: Router) { }
 
   get vehicleNumber() {
     return this.addVehicleForm.controls['vehicleNumber']
@@ -57,7 +59,8 @@ export class AddVehicleFormComponent implements OnInit {
   }
 
   addVehicle() {
-
+    this.vehicleService.addVehicleData(this.addVehicleForm.value).subscribe(
+      data => console.log(data), (error) => {this.router.navigate(['/vehicles'])})
   }
 
 }

@@ -59,7 +59,7 @@
               <mat-header-cell *matHeaderCellDef > Action </mat-header-cell>
               <mat-cell *matCellDef="let row" class="text-primary">
                 <button mat-icon-button color="primary" (click)="openModal(row)" title="View Contact"><mat-icon>view_module</mat-icon></button>
-                <button mat-icon-button color="primary" (click)="openModal(row)" title="View Contact"><mat-icon>delete</mat-icon></button>
+                <button mat-icon-button color="primary" (click)="itemData = row; isDeleteModalOpen = true" title="View Contact"><mat-icon>delete</mat-icon></button>
               </mat-cell>
           </ng-container>
       
@@ -105,9 +105,7 @@
               <div class="row">
                 <div class="fieldWrapper col">
                   <div class="nameWrapper">Status</div>
-                  <div class="valueWrapper">
-                      <input type="text" matInput [(ngModel)]='newStatus' placeholder={{itemData.vehicleStatus}}>
-                  </div>
+                  <div class="valueWrapper">{{itemData.vehicleStatus}}</div>
                 </div>
                 <div class="fieldWrapper col">
                   <div class="nameWrapper">Country</div>
@@ -120,10 +118,21 @@
               </div>
               <div class="d-flex justify-content-around my-5 mb-4">
                 <button mat-raised-button (click)="closeModal()">Close</button>
-                <button mat-raised-button color="primary" (click)="updateStatus(newStatus)">Update</button>
+                <!-- <button mat-raised-button color="primary" (click)="updateStatus(newStatus)">Update</button> -->
               </div>
           </div>
       </div>
+  </div>
+  <!-- delete modal -->
+  <div class="Modal" *ngIf="isDeleteModalOpen">
+    <div class="Modal-content w-50 mt-5">
+      <span id="closeModal" class="Close" (click)="isDeleteModalOpen = false">&times;</span>
+      <h1 class="text-center mt-5">Do you want to delete vehicle?</h1>
+      <div class="d-flex justify-content-around my-5 mb-4">
+        <button mat-raised-button (click)="isDeleteModalOpen = false" >Close</button>
+        <button mat-raised-button color="primary" (click)="deleteVehicle()" >Delete</button>
+      </div>
+    </div>
   </div>
 </div>
   

@@ -109,12 +109,12 @@
                 </div>
             </div>
             <mat-radio-group aria-label="Status" formControlName="status">
-                <mat-radio-button value="AVAILABLE">Available</mat-radio-button>
-                <mat-radio-button value="NOTAVAILABLE">Not Available</mat-radio-button>
+                <mat-radio-button value="Available">Available</mat-radio-button>
+                <mat-radio-button value="NotAvailable">Not Available</mat-radio-button>
             </mat-radio-group>
             
             <div class="d-flex justify-content-around mt-4">
-                <button [disabled]="addTerminalForm.valid" (click)="addTerminal()" mat-raised-button color="primary" appearance="fill">Add</button>
+                <button [disabled]="addTerminalForm.invalid" (click)="addTerminal()" mat-raised-button color="primary" appearance="fill">Add</button>
             </div>
         </form>
     </div>

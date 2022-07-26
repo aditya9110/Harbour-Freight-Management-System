@@ -3,6 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { Terminal } from '../terminals/terminals.component';
+import { VehicleService } from '../vehicle.service';
 
 export interface Vehicle {
   vehicleNumber:string,
@@ -14,35 +17,6 @@ export interface Vehicle {
   harborLocation:string
 }
 
-const VehiclesData : Vehicle[] = [
-  {
-    vehicleNumber:"UE7890",
-    vehicleName:"Tower crane",
-    maxLiftingCapacity: 19.8,
-    retireDate:"20-Dec-2030",
-    vehicleStatus:"Active",
-    country:"Australia",
-    harborLocation:"Sydney Harbor"
-  },
-  {
-    vehicleNumber:"UE7850",
-    vehicleName:"Tower crane",
-    maxLiftingCapacity: 19.8,
-    retireDate:"20-Dec-2030",
-    vehicleStatus:"Active",
-    country:"Singapore",
-    harborLocation:"Jurong"
-  },      
-  {
-    vehicleNumber:"WK7876",
-    vehicleName:"Fireplace crane",
-    maxLiftingCapacity: 7100,
-    retireDate:"21-Jan-2022",
-    vehicleStatus:"InActive",
-    country:"Australia",
-    harborLocation:"Syndey Harbor"
-  }]
-
 @Component({
   selector: 'app-vehicles',
   templateUrl: './vehicles.component.html',
@@ -52,24 +26,25 @@ export class VehiclesComponent implements OnInit {
 
   displayedColumns: string[] = 
   ['vehicleNumber', 'vehicleName', 'maxLiftingCapacity', 'retireDate', 'country', 'vehicleStatus', 'harborLocation', 'action'];
-  dataSource = new MatTableDataSource<Vehicle>(VehiclesData);
+  vehiclesData = []
+  dataSource!: MatTableDataSource<Vehicle>;
   isModalOpen: boolean = false;
   itemData!: Vehicle;
   isUpdateFormOpen: boolean = false;
   minDate = new Date();
+  isDeleteModalOpen : boolean = false
   newStatus = this.itemData ? this.itemData.vehicleStatus : ''
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() { }
+  constructor(private vehicleService: VehicleService, private router: Router) { }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.vehicleService.getVehicleData().subscribe({next: data => this.vehiclesData = data, 
+      complete: ()=>{this.dataSource = new MatTableDataSource<Vehicle>(this.vehiclesData)
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;}}) 
   }
   
   openModal(data: Vehicle){
@@ -94,4 +69,18 @@ export class VehiclesComponent implements OnInit {
     console.log(this.newStatus)
   }
 
+  deleteVehicle() {
+    this.vehicleService.deleteVehicleData(this.itemData.vehicleNumber).subscribe(
+      data => {console.log(data)}, error => {
+        this.isDeleteModalOpen = false
+        this.reloadCurrentRoute()
+      })
+  }
+
+  reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+  }
 }
