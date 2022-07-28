@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      discovery:
+        locator:
+          enabled: true
+      routes:
+       - id: TerminalMS
+         uri: lb://TerminalMS
+         predicates:
+          - Path=/ftr/terminals/**
+       - id: UserMS
+         uri: lb://UserMS
+         predicates:
+          - Path=/ftr/userProfile/**
+       - id: VehicleMS
+         uri: lb://VehicleMS
+         predicates:
+          - Path=/ftr/vehicles/**
+       - id: WorkitemsMS
+         uri: lb://WorkitemsMS
+         predicates:
+          - Path=/ftr/workItems/**

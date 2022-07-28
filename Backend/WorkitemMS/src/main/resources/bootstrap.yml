@@ -1,0 +1,16 @@
+server:
+ port: 9004
+  
+spring:
+ application:
+  name: WorkitemsMS
+ cloud:
+  consul:
+   discovery:
+    hostname: localhost
+   config:
+    enabled: true
+    prefixes: config
+    defaultContext: application
+    profileSeparator: '::'
+    format: YAML

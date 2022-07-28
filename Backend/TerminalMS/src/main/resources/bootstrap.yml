@@ -1,0 +1,16 @@
+server:
+ port: 9003
+  
+spring:
+ application:
+  name: TerminalMS
+ cloud:
+  consul:
+   discovery:
+    hostname: localhost
+   config:
+    enabled: true
+    prefixes: config
+    defaultContext: application
+    profileSeparator: '::'
+    format: YAML
