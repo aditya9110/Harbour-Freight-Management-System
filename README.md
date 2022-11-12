@@ -1,5 +1,11 @@
 # Harbour Freight Management System
 
+**Tech Stack** - Spring Boot, Angular JS and MySQL.
+
+**IDE Used** - VS Code, STS and WorkBench.
+
+**Harbour Freight Management System or HFMS** includes dual role user, vendors and admin. Vendor add and maintain their work items while admin has the permissions to add, update and delete terminals, vehicles and allocate workitems to respective terminals and vehicles. Vendors can manage and update personal profile. Login and logout functionality is implemented with login guard and seamless integration between backend and frontend alongside database with it.
+
 Home Page
 
 ![](https://github.com/aditya9110/Harbour-Freight-Management-System/blob/main/Screenshots/1%20Home.png)
